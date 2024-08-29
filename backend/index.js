@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 // import db from "./config/Database.js";
 import UserRoute from "./routes/UserRoute.js";
 import ProductRoute from "./routes/ProductRoute.js";
+import AuthRoute from "./routes/AuthRoute.js";
 
 dotenv.config();
 
@@ -15,9 +16,6 @@ app.use(express.json());
 // (async () => {
 //   await db.sync();
 // })();
-
-app.use(UserRoute);
-app.use(ProductRoute);
 
 app.use(
   session({
@@ -36,6 +34,10 @@ app.use(
     origin: "http://localhost:3000",
   })
 );
+
+app.use(UserRoute);
+app.use(ProductRoute);
+app.use(AuthRoute);
 
 app.listen(process.env.APP_PORT, () => {
   console.log(`Server up and running ${port}`);
